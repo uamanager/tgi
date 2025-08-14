@@ -1,0 +1,44 @@
+name: Lint/Test/Build Workflow
+
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Step
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node and Yarn Cache Step
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'yarn'
+
+      - name: Install Dependencies Step
+        run: yarn install --frozen-lockfile
+
+      - name: Calculate Affected Step
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: 'main'
+
+      - name: Lint Affected Step
+        run: yarn nx affected -t lint --parallel=3
+
+      - name: Unit Test Affected Step
+        run: yarn nx affected -t test --parallel=3 --configuration=ci
+
+      - name: E2E Test Affected Step
+        run: yarn nx affected -t e2e --parallel=3 --configuration=ci
+
+      - name: Build Affected Step
+        run: yarn nx affected -t build --parallel=3

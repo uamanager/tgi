@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommitType(chore)"
+  ],
+  "labels": [
+    "type:chore:deps"
+  ],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "rangeStrategy": "pin"
+}
