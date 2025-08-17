@@ -1,4 +1,4 @@
-FROM node:22.17.1 AS build-env
+FROM node:22.18.0 AS build-env
 
 WORKDIR /build
 
@@ -8,7 +8,7 @@ RUN yarn install --frozen-lockfile && \
     yarn build:prod
 
 
-FROM node:22.17.1-alpine
+FROM node:22.18.0-alpine
 
 WORKDIR /app
 
