@@ -19,6 +19,9 @@ export class ServerDomainJobStatsService {
       _completed.reduce((accum, curr) => (accum += curr.attempts), 0) /
         _completed.length || 0;
 
+    const _averageDuration =
+      jobRuns.reduce((accum, curr) => (accum += curr.duration), 0) / jobRuns.length || 0;
+
     const _byStatus = Object.entries(JobStatus).reduce(
       (accum, [, value]) => {
         const _qty = jobs.filter((job) => job.status === value).length;
@@ -44,7 +47,7 @@ export class ServerDomainJobStatsService {
       total,
       qtyByStatus: _byStatus.qty,
       rateByStatus: _byStatus.rate,
-      averageDuration: 0,
+      averageDuration: _averageDuration,
       averageAttempts: _averageAttempts,
       patterns: [
         this._preparePattern('--result=auto', jobs, _runsByJob, _completedRate, (job) => {
