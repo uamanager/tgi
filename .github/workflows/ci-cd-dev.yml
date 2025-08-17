@@ -33,7 +33,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout Step
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Log in to the Container registry
