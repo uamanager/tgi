@@ -1,0 +1,8 @@
+{
+  "name": "server-infra-memory",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/server/infra/memory/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "server-api-job",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/server/api/job/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

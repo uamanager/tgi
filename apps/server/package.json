@@ -1,0 +1,7 @@
+{
+  "name": "@tgi/server",
+  "appName": "TGI Sports Jobs Service",
+  "description": "Service for launching and managing jobs concurrently",
+  "version": "0.0.1",
+  "private": true
+}

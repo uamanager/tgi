@@ -18,7 +18,16 @@
     "skipDefaultLibCheck": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tgi/core": ["libs/core/src/index.ts"],
+      "@tgi/server-core": ["libs/server/core/src/index.ts"],
+      "@tgi/server-api-job": ["libs/server/api/job/src/index.ts"],
+      "@tgi/server-domain-job": ["libs/server/domain/job/src/index.ts"],
+      "@tgi/server-infra-memory": ["libs/server/infra/memory/src/index.ts"],
+      "@tgi/server-infra-child-process": ["libs/server/infra/child-process/src/index.ts"],
+      "@tgi/server-worker-job": ["libs/server/worker/job/src/index.ts"],
+      "@tgi/shared": ["libs/shared/src/index.ts"]
+    }
   },
   "exclude": [
     "node_modules",
