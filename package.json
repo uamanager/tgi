@@ -27,14 +27,14 @@
     "express": "5.1.0",
     "fast-safe-stringify": "2.1.1",
     "helmet": "8.1.0",
-    "joi": "18.0.0",
     "nest-winston": "1.10.2",
     "nestjs-cls": "6.0.1",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
     "swagger-ui-express": "5.0.1",
     "uuid": "11.1.0",
-    "winston": "3.17.0"
+    "winston": "3.17.0",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",

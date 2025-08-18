@@ -1,20 +1,14 @@
-import Joi from 'joi';
-import { registerConfigAs } from '@tgi/server-core';
+import * as z from 'zod';
+import { registerAs } from '@nestjs/config';
 
-export interface ISwaggerConfig {
-  enabled: boolean;
-  prefix: string;
-}
+export const SwaggerConfigSchema = z.object({
+  enabled: z.stringbool().optional().default(true),
+  prefix: z.string().min(1).max(100).optional().default('docs'),
+});
 
-export default registerConfigAs<ISwaggerConfig>(
-  'swagger',
-  {
-    enabled: (process.env['SWAGGER_ENABLED'] ?? 'true') === 'true',
+export default registerAs<z.infer<typeof SwaggerConfigSchema>>('swagger', () => {
+  return SwaggerConfigSchema.parse({
+    enabled: process.env['SWAGGER_ENABLED'],
     prefix: process.env['SWAGGER_ROOT_PREFIX'],
-  },
-  Joi.object({
-    enabled: Joi.boolean().default(true),
-    prefix: Joi.string().valid('docs').default('docs'),
-  }),
-  { abortEarly: true },
-);
+  });
+});

@@ -1,20 +1,14 @@
-import Joi from 'joi';
-import { registerConfigAs } from '@tgi/server-core';
+import * as z from 'zod';
+import { registerAs } from '@nestjs/config';
 
-export interface IApiConfig {
-  prefix: string;
-  defaultVersion: string;
-}
+export const ApiConfigSchema = z.object({
+  prefix: z.string().min(1).max(100).optional().default('api'),
+  defaultVersion: z.string().regex(/^\d+$/).optional().default('1'),
+});
 
-export default registerConfigAs<IApiConfig>(
-  'api',
-  {
+export default registerAs<z.infer<typeof ApiConfigSchema>>('api', () => {
+  return ApiConfigSchema.parse({
     prefix: process.env['API_ROOT_PREFIX'],
     defaultVersion: process.env['API_DEFAULT_VERSION'],
-  },
-  Joi.object({
-    prefix: Joi.string().valid('api').default('api'),
-    defaultVersion: Joi.string().valid('1').default('1'),
-  }),
-  { abortEarly: true },
-);
+  });
+});
